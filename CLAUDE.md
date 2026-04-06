@@ -15,6 +15,13 @@ no meetup Codecon. O objetivo e demonstrar Spec Driven Development na pratica.
 - Dockerfile multi-stage para build de producao
 - Nunca adicionar Co-Authored-By nos commits
 
+## Workflow Git
+- A branch main e protegida — NUNCA commitar direto na main
+- Sempre criar uma branch feature (ex: feat/backend, feat/frontend, feat/infra)
+- Ao terminar, abrir um Pull Request para main com descricao clara
+- Aguardar aprovacao do reviewer antes de mergear
+- Isso garante que nenhum codigo entra sem revisao humana
+
 ## Banco de dados
 - PostgreSQL do shared-infra (192.168.30.121:5432 em prod)
 - Database: codecon_feedback

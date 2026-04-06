@@ -1,12 +1,15 @@
-# Codecon Feedback
+# Vote aí
 
 ## Objetivo
-App para coletar feedbacks ao vivo durante meetups da Codecon.
-Suporta multiplas palestras na mesma noite com votacao em tempo real.
-Serve como ferramenta do evento E como pagina publica
-no portfolio do palestrante (antoniopedro.com.br).
+Vote ai e um sistema de votacao ao vivo para eventos de tecnologia.
+O nome e uma referencia dupla: "ai" baiano (la, aqui) e "AI" de
+inteligencia artificial — porque a app foi construida inteiramente
+por agentes de IA usando Spec Driven Development.
 
-## Palestras do evento
+Suporta multiplas palestras na mesma noite com votacao em tempo real.
+Hospedado em antoniopedro.com.br/voteai
+
+## Palestras do evento (Codecon Meetup Salvador)
 
 ### Talk 1
 - Slug: sdd-sopa
@@ -24,30 +27,30 @@ no portfolio do palestrante (antoniopedro.com.br).
 
 ### Home do evento
 - Rota / — pagina inicial do meetup da noite
-- Header: "Codecon Meetup Salvador" + data do evento
+- Header: "Vote ai" (logo) + "Codecon Meetup Salvador" + data do evento
 - Cards das palestras da noite com:
   - Titulo + palestrante
   - Nota media atual (atualiza em tempo real)
-  - Total de feedbacks recebidos
-  - Botao "Avaliar" que leva pra /talk/:slug
+  - Total de votos recebidos
+  - Botao "Votar" que leva pra /talk/:slug
 - Ranking visual: qual palestra esta com melhor nota (barra comparativa)
-- Footer: "Construido ao vivo com SDD" + link pro repo
+- Footer: "Vote ai — construido ao vivo com SDD por Antonio Pedro"
 
-### Feedback por palestra
+### Votacao por palestra
 - Votacao ANONIMA — sem campo de nome
 - Participante acessa via QR code ou clicando no card (mobile-first)
 - Envia nota (1-5 estrelas clicaveis) e comentario opcional
-- Feedbacks aparecem em tempo real na tela (polling 5s)
+- Votos aparecem em tempo real na tela (polling 5s)
 - Stats ao vivo: media, total, distribuicao visual de notas
-- Botao voltar pra home pra avaliar a outra palestra
+- Botao voltar pra home pra votar na outra palestra
 
 ### Modo apresentacao (telao)
 - Rota /live — visao geral do evento (todas as talks)
   - Cards lado a lado com stats em tempo real
-  - Feedbacks mais recentes de todas as talks em feed unico
+  - Votos mais recentes de todas as talks em feed unico
   - Fundo escuro pra projetor
 - Rota /talk/:slug/live — foco numa talk especifica
-  - Feed de feedbacks a esquerda (ultimos 10, animacao slide-in)
+  - Feed de votos a esquerda (ultimos 10, animacao slide-in)
   - Stats grandes a direita (nota media gigante, barras de distribuicao)
   - QR code fixo no canto inferior direito
 
@@ -64,21 +67,21 @@ no portfolio do palestrante (antoniopedro.com.br).
 - Lista todas as talks do evento
 - Retorno: 200 com array de { slug, title, speaker, description }
 
-### POST /api/v1/feedbacks
+### POST /api/v1/votes
 - Body: { rating (1-5), talk_slug, comment? }
 - Votacao anonima: sem campo de nome
 - Validacoes: rating 1-5, talk_slug deve existir
 - comment e opcional
 - Retorno: 201
 
-### GET /api/v1/feedbacks?talk=:slug
-- Lista feedbacks do talk, created_at DESC
+### GET /api/v1/votes?talk=:slug
+- Lista votos do talk, created_at DESC
 - Retorno: 200 com array
 
-### GET /api/v1/feedbacks/stats?talk=:slug
+### GET /api/v1/votes/stats?talk=:slug
 - Retorno: { total, average_rating, distribution: {1:N,...} }
 
-### GET /api/v1/feedbacks/stats/all
+### GET /api/v1/votes/stats/all
 - Stats de todas as talks de uma vez
 - Retorno: array de { talk_slug, talk_title, total, average_rating, distribution }
 - Usado pela home e pelo modo apresentacao
@@ -86,36 +89,37 @@ no portfolio do palestrante (antoniopedro.com.br).
 ## Frontend (React + Vite + Tailwind + shadcn/ui)
 
 ### / (home do evento)
-- Header grande: "Codecon Meetup Salvador"
-- Subtitulo: data do evento
+- Header: logo "Vote ai" (estilizado — "Vote" em branco, "ai" em violet)
+- Subtitulo: "Codecon Meetup Salvador" + data do evento
 - Grid de cards (1 por talk) usando shadcn Card:
   - Titulo + palestrante
   - Estrelas com media atual (atualizacao polling 5s)
-  - Badge com total de feedbacks
-  - Botao "Avaliar esta palestra"
+  - Badge com total de votos
+  - Botao "Votar nessa palestra"
 - Barra comparativa de notas entre as talks (visual, animada)
-- Footer discreto: "Construido ao vivo com SDD por Antonio Pedro"
+- Footer: "Vote ai — construido ao vivo com SDD por Antonio Pedro"
 
-### /talk/:slug (avaliacao — mobile-first)
+### /talk/:slug (votacao — mobile-first)
 - Header: titulo da palestra + palestrante
 - Formulario simples:
   - Estrelas clicaveis (1-5) — obrigatorio
   - Textarea comentario — opcional, placeholder "Deixe um comentario (opcional)"
-  - Botao "Enviar avaliacao"
-- Lista de feedbacks abaixo (polling 5s, novos com animacao fade-in)
-  - Cada feedback mostra: estrelas + comentario (se houver) + "ha X min"
+  - Botao "Enviar voto"
+- Lista de votos abaixo (polling 5s, novos com animacao fade-in)
+  - Cada voto mostra: estrelas + comentario (se houver) + "ha X min"
 - Stats compactos no topo com shadcn Badge (nota media + total)
-- Link "Voltar" e "Avaliar outra palestra"
+- Link "Voltar" e "Votar em outra palestra"
 
 ### /live (modo apresentacao — visao geral)
 - Fundo escuro (gray-950)
+- Logo "Vote ai" no topo
 - Cards das talks lado a lado com stats gigantes
-- Feed unificado de feedbacks recentes no centro
+- Feed unificado de votos recentes no centro
 - QR code da home no canto
 
 ### /talk/:slug/live (modo apresentacao — foco)
 - Fundo escuro
-- Feed de feedbacks a esquerda
+- Feed de votos a esquerda
 - Stats grandes a direita
 - QR code da talk no canto
 
@@ -126,11 +130,12 @@ no portfolio do palestrante (antoniopedro.com.br).
 
 ## Design
 - Usar shadcn/ui como base de componentes (Card, Button, Input, Badge, etc)
+- Logo: "Vote" em font-bold text-white + "ai" em font-bold text-violet-400
 - Cores: violet-600 primaria, gray-950 para modo live
 - Estrelas: amber-400 preenchidas, gray-300 vazias
 - Cards: shadcn Card com hover:shadow-md
 - Barra comparativa: gradient violet-500 > indigo-500
-- Animacao: feedbacks novos com fade-in + slide-up (CSS transitions)
+- Animacao: votos novos com fade-in + slide-up (CSS transitions)
 - Mobile-first, max-w-lg no form, grid responsivo na home
 - Layout limpo e moderno — priorizar legibilidade e usabilidade
 
@@ -138,10 +143,10 @@ no portfolio do palestrante (antoniopedro.com.br).
 
 ### Banco de dados
 - PostgreSQL (shared-infra existente — 192.168.30.121:5432)
-- Database: codecon_feedback
+- Database: voteai
 - Credenciais dev: postgres / postgres
 - Credenciais prod: postgres / Quixabeira@1
-- Tabelas: talks, feedbacks
+- Tabelas: talks, votes
 - Migration SQL em migrations/001_init.sql
 
 ### Desenvolvimento local (Docker Compose)
@@ -158,8 +163,8 @@ no portfolio do palestrante (antoniopedro.com.br).
 - Namespace test: codecon-test (ensaios)
 - Namespace prod: codecon (dia do evento)
 - URLs:
-  - Test: codecon-test.institutoitinerante.com.br
-  - Prod: codecon-demo.institutoitinerante.com.br
+  - Test: voteai-test.antoniopedro.com.br
+  - Prod: voteai.antoniopedro.com.br (ou antoniopedro.com.br/voteai)
 - Acesso ao cluster via Tailscale no dia do evento
 
 ## Convencoes
@@ -172,5 +177,6 @@ no portfolio do palestrante (antoniopedro.com.br).
 Esta app foi construida inteiramente via agentes de IA (Claude Code)
 usando a spec acima como unica instrucao. O palestrante nao escreveu
 nenhuma linha de codigo manualmente — apenas a especificacao.
-Isso demonstra o conceito central do SDD: a spec e o artefato,
-o codigo e o subproduto.
+O nome "Vote ai" e uma referencia dupla: "ai" baiano e "AI" de
+inteligencia artificial. Isso demonstra o conceito central do SDD:
+a spec e o artefato, o codigo e o subproduto.

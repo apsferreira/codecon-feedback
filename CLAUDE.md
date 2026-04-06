@@ -1,8 +1,9 @@
-# Codecon Feedback
+# Vote ai
 
 ## Contexto
-Este repo foi criado ao vivo durante a palestra "SDD: para alem da sopa de letrinhas"
-no meetup Codecon. O objetivo e demonstrar Spec Driven Development na pratica.
+Vote ai e um sistema de votacao ao vivo para eventos de tecnologia.
+Criado ao vivo durante a palestra "SDD: para alem da sopa de letrinhas"
+no meetup Codecon Salvador. Demonstra Spec Driven Development na pratica.
 
 ## Regras
 - Toda implementacao deve seguir o SPEC.md como fonte de verdade

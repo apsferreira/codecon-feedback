@@ -80,12 +80,12 @@ no portfolio do palestrante (antoniopedro.com.br).
 - Retorno: array de { talk_slug, talk_title, total, average_rating, distribution }
 - Usado pela home e pelo modo apresentacao
 
-## Frontend (React + Vite + Tailwind)
+## Frontend (React + Vite + Tailwind + shadcn/ui)
 
 ### / (home do evento)
 - Header grande: "Codecon Meetup Salvador"
 - Subtitulo: data do evento
-- Grid de cards (1 por talk):
+- Grid de cards (1 por talk) usando shadcn Card:
   - Titulo + palestrante
   - Estrelas com media atual (atualizacao polling 5s)
   - Badge com total de feedbacks
@@ -95,9 +95,10 @@ no portfolio do palestrante (antoniopedro.com.br).
 
 ### /talk/:slug (avaliacao — mobile-first)
 - Header: titulo da palestra + palestrante
-- Formulario: nome, estrelas clicaveis (1-5), textarea comentario
+- Formulario com shadcn Input, Textarea, Button
+- Estrelas clicaveis (1-5) como componente customizado
 - Lista de feedbacks abaixo (polling 5s, novos com animacao fade-in)
-- Stats compactos no topo (nota media + total)
+- Stats compactos no topo com shadcn Badge (nota media + total)
 - Link "Voltar" e "Avaliar outra palestra"
 
 ### /live (modo apresentacao — visao geral)
@@ -118,22 +119,39 @@ no portfolio do palestrante (antoniopedro.com.br).
 - Link pro repo + contatos
 
 ## Design
+- Usar shadcn/ui como base de componentes (Card, Button, Input, Badge, etc)
 - Cores: violet-600 primaria, gray-950 para modo live
 - Estrelas: amber-400 preenchidas, gray-300 vazias
-- Cards: bg-white, rounded-2xl, shadow-sm, hover:shadow-md
+- Cards: shadcn Card com hover:shadow-md
 - Barra comparativa: gradient violet-500 > indigo-500
-- Animacao: feedbacks novos com fade-in + slide-up
+- Animacao: feedbacks novos com fade-in + slide-up (CSS transitions)
 - Mobile-first, max-w-lg no form, grid responsivo na home
-- Tipografia: font-bold nos titulos, text-sm nos comentarios
+- Layout limpo e moderno — priorizar legibilidade e usabilidade
 
-## Infra
-- Backend: Go 1.24 + Fiber v2 + SQLite
-- Frontend: React 19 + TypeScript + Vite + TailwindCSS
-- Deploy: Docker multi-stage > K3s
+## Infra e ambiente de desenvolvimento
+
+### Desenvolvimento local (Docker Compose)
+- docker-compose.yml na raiz com servicos: backend, frontend
+- Backend: Go 1.24 + Fiber v2 + SQLite (arquivo local em /data/feedback.db)
+- Frontend: React 19 + TypeScript + Vite + TailwindCSS + shadcn/ui
+- Hot reload via volume mounts
+- Backend na porta 8080, frontend na porta 3000
+- Frontend faz proxy das chamadas /api para o backend
+
+### Producao (Docker multi-stage > K3s)
+- Dockerfile.backend: multi-stage (golang:1.24 builder > alpine runtime)
+- Dockerfile.frontend: multi-stage (node:22 builder > nginx:alpine)
+- Deploy: K3s com manifests em k8s/
 - URL: codecon-demo.institutoitinerante.com.br
 
 ## Convencoes
 - cmd/server/main.go, internal/handler/, internal/domain/
 - Sem ORM, queries diretas com database/sql
-- Dockerfile multi-stage (builder > alpine)
 - Commits em PT-BR
+
+## Nota sobre agentes de IA
+Esta app foi construida inteiramente via agentes de IA (Claude Code)
+usando a spec acima como unica instrucao. O palestrante nao escreveu
+nenhuma linha de codigo manualmente — apenas a especificacao.
+Isso demonstra o conceito central do SDD: a spec e o artefato,
+o codigo e o subproduto.

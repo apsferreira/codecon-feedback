@@ -34,8 +34,9 @@ no portfolio do palestrante (antoniopedro.com.br).
 - Footer: "Construido ao vivo com SDD" + link pro repo
 
 ### Feedback por palestra
+- Votacao ANONIMA — sem campo de nome
 - Participante acessa via QR code ou clicando no card (mobile-first)
-- Envia nome, nota (1-5 estrelas clicaveis) e comentario
+- Envia nota (1-5 estrelas clicaveis) e comentario opcional
 - Feedbacks aparecem em tempo real na tela (polling 5s)
 - Stats ao vivo: media, total, distribuicao visual de notas
 - Botao voltar pra home pra avaliar a outra palestra
@@ -64,8 +65,10 @@ no portfolio do palestrante (antoniopedro.com.br).
 - Retorno: 200 com array de { slug, title, speaker, description }
 
 ### POST /api/v1/feedbacks
-- Body: { author_name, rating (1-5), comment, talk_slug }
-- Validacoes: rating 1-5, author_name obrigatorio, talk_slug deve existir
+- Body: { rating (1-5), talk_slug, comment? }
+- Votacao anonima: sem campo de nome
+- Validacoes: rating 1-5, talk_slug deve existir
+- comment e opcional
 - Retorno: 201
 
 ### GET /api/v1/feedbacks?talk=:slug
@@ -95,9 +98,12 @@ no portfolio do palestrante (antoniopedro.com.br).
 
 ### /talk/:slug (avaliacao — mobile-first)
 - Header: titulo da palestra + palestrante
-- Formulario com shadcn Input, Textarea, Button
-- Estrelas clicaveis (1-5) como componente customizado
+- Formulario simples:
+  - Estrelas clicaveis (1-5) — obrigatorio
+  - Textarea comentario — opcional, placeholder "Deixe um comentario (opcional)"
+  - Botao "Enviar avaliacao"
 - Lista de feedbacks abaixo (polling 5s, novos com animacao fade-in)
+  - Cada feedback mostra: estrelas + comentario (se houver) + "ha X min"
 - Stats compactos no topo com shadcn Badge (nota media + total)
 - Link "Voltar" e "Avaliar outra palestra"
 
@@ -130,23 +136,36 @@ no portfolio do palestrante (antoniopedro.com.br).
 
 ## Infra e ambiente de desenvolvimento
 
+### Banco de dados
+- PostgreSQL (shared-infra existente — 192.168.30.121:5432)
+- Database: codecon_feedback
+- Credenciais dev: postgres / postgres
+- Credenciais prod: postgres / Quixabeira@1
+- Tabelas: talks, feedbacks
+- Migration SQL em migrations/001_init.sql
+
 ### Desenvolvimento local (Docker Compose)
 - docker-compose.yml na raiz com servicos: backend, frontend
-- Backend: Go 1.24 + Fiber v2 + SQLite (arquivo local em /data/feedback.db)
-- Frontend: React 19 + TypeScript + Vite + TailwindCSS + shadcn/ui
+- Backend conecta no PostgreSQL do shared-infra (host.docker.internal ou IP)
+- Frontend faz proxy das chamadas /api para o backend
 - Hot reload via volume mounts
 - Backend na porta 8080, frontend na porta 3000
-- Frontend faz proxy das chamadas /api para o backend
 
-### Producao (Docker multi-stage > K3s)
+### Producao (K3s)
 - Dockerfile.backend: multi-stage (golang:1.24 builder > alpine runtime)
 - Dockerfile.frontend: multi-stage (node:22 builder > nginx:alpine)
 - Deploy: K3s com manifests em k8s/
-- URL: codecon-demo.institutoitinerante.com.br
+- Namespace test: codecon-test (ensaios)
+- Namespace prod: codecon (dia do evento)
+- URLs:
+  - Test: codecon-test.institutoitinerante.com.br
+  - Prod: codecon-demo.institutoitinerante.com.br
+- Acesso ao cluster via Tailscale no dia do evento
 
 ## Convencoes
 - cmd/server/main.go, internal/handler/, internal/domain/
-- Sem ORM, queries diretas com database/sql
+- Sem ORM, queries diretas com database/sql + pgx
+- Dockerfile multi-stage (builder > alpine)
 - Commits em PT-BR
 
 ## Nota sobre agentes de IA

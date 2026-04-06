@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codecon-feedback-backend
+  namespace: codecon-test
+  labels:
+    app: codecon-feedback-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codecon-feedback-backend
+  template:
+    metadata:
+      labels:
+        app: codecon-feedback-backend
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/apsferreira/codecon-feedback-backend:test
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codecon-feedback-frontend
+  namespace: codecon-test
+  labels:
+    app: codecon-feedback-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codecon-feedback-frontend
+  template:
+    metadata:
+      labels:
+        app: codecon-feedback-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/apsferreira/codecon-feedback-frontend:test
+          ports:
+            - containerPort: 80

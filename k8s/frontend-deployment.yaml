@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voteai-frontend
+  namespace: codecon
+  labels:
+    app: voteai-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voteai-frontend
+  template:
+    metadata:
+      labels:
+        app: voteai-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/apsferreira/voteai-frontend:latest
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: voteai-frontend
+  namespace: codecon
+spec:
+  selector:
+    app: voteai-frontend
+  ports:
+    - port: 80
+      targetPort: 80

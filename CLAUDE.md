@@ -89,6 +89,14 @@ CREATE TABLE IF NOT EXISTS votes (
 - Migration SQL correspondente em migrations/001_init.sql
 
 ## Deploy K3s (regras de infra reais, nao inventar alternativas)
+- NUNCA fazer deploy manual (kubectl apply, build+push seguido de apply
+  direto no cluster). O deploy so acontece via merge do PR na main — isso
+  dispara o pipeline automatico (.github/workflows/deploy.yml builda,
+  publica a imagem e atualiza k8s/deployment.yaml; o ArgoCD sincroniza
+  sozinho a partir dai). Se a tarefa de deploy do tasks.md perguntar como
+  proceder, a resposta e sempre: parar, marcar o PR como pronto pra
+  review (se a validacao manual ja tiver sido confirmada), e aguardar
+  o merge — nunca oferecer rodar kubectl/docker push diretamente
 - O cluster K3s roda em amd64 — SEMPRE buildar as imagens com
   `--platform linux/amd64` explicitamente (docker buildx build
   --platform linux/amd64 ... --push). NUNCA usar docker build simples

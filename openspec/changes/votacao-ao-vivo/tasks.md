@@ -60,10 +60,10 @@
 
 ## 10. Validação com requisições reais
 
-- [ ] 10.1 Subir a aplicação via `docker compose up` e validar `GET /api/talks` com curl
-- [ ] 10.2 Validar `POST /api/talks/:slug/votes` com curl (voto com e sem comentário, incluindo caso de rating inválido)
-- [ ] 10.3 Validar `GET /api/talks/:slug/stats` e `GET /api/talks/:slug/comments` com curl, conferindo ordenação mais recente → mais antigo
-- [ ] 10.4 Documentar os comandos curl e resultados no corpo do PR
+- [x] 10.1 Subir a aplicação via `docker compose up` e validar `GET /api/talks` com curl
+- [x] 10.2 Validar `POST /api/talks/:slug/votes` com curl (voto com e sem comentário, incluindo caso de rating inválido)
+- [x] 10.3 Validar `GET /api/talks/:slug/stats` e `GET /api/talks/:slug/comments` com curl, conferindo ordenação mais recente → mais antigo
+- [x] 10.4 Documentar os comandos curl e resultados no corpo do PR
 
 ## 11. Deploy
 

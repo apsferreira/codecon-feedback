@@ -40,7 +40,7 @@ func (h *VoteHandler) Create(c *fiber.Ctx) error {
 		return fiber.NewError(fiber.StatusInternalServerError, "falha ao registrar voto")
 	}
 
-	return c.SendStatus(fiber.StatusCreated)
+	return c.SendStatus(fiber.StatusNoContent)
 }
 
 // Stats trata GET /api/talks/:slug/stats

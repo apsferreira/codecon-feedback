@@ -34,14 +34,14 @@
 
 - [x] 6.1 Implementar tela inicial listando talks (título, palestrante) com cards diferenciados visualmente entre si
 - [x] 6.2 Aplicar espaçamento mínimo definido no CLAUDE.md (gaps, padding de card, padding lateral mobile)
-- [ ] 6.3 Validar tema claro e escuro na tela
+- [x] 6.3 Validar tema claro e escuro na tela
 
 ## 7. Frontend — tela de votação
 
 - [x] 7.1 Implementar formulário de voto: seleção de nota 1-5 (obrigatória) e campo de comentário opcional
 - [x] 7.2 Implementar submissão do voto contra `POST /api/talks/:slug/votes`, com feedback de sucesso/erro
 - [x] 7.3 Adicionar navegação de volta para a lista de talks
-- [ ] 7.4 Validar tema claro e escuro na tela
+- [x] 7.4 Validar tema claro e escuro na tela
 
 ## 8. Frontend — tela de resultado ao vivo
 
@@ -50,7 +50,7 @@
 - [x] 8.3 Implementar polling (3-5s) contra `stats` e `comments` para atualização em tempo real sem reload manual
 - [x] 8.4 Tratar estado de talk sem votos (sem erro, com indicação clara de "sem votos ainda")
 - [x] 8.5 Adicionar navegação de volta para a lista de talks
-- [ ] 8.6 Validar tema claro e escuro na tela
+- [x] 8.6 Validar tema claro e escuro na tela
 
 ## 9. Containerização
 
@@ -75,11 +75,11 @@
 
 ## 12. Validação de completude (funcionalidades visíveis e utilizáveis na UI)
 
-- [ ] 12.1 Confirmar que o voto anônimo com nota de 1 a 5 está visível e utilizável na interface (não só no endpoint/banco) — usuário consegue votar do início ao fim pela UI
-- [ ] 12.2 Confirmar que o comentário opcional aparece como campo real no formulário de voto na UI, não apenas aceito silenciosamente pela API
-- [ ] 12.3 Confirmar que as estatísticas em tempo real (média, total de votos) estão visíveis na tela de resultado e se atualizam sozinhas, sem reload manual
-- [ ] 12.4 Confirmar que a tela de resultado ao vivo existe como tela dedicada e acessível pela navegação da aplicação
-- [ ] 12.5 Confirmar que a lista de comentários (nota, comentário, horário) está visível na tela de resultado, ordenada do mais recente pro mais antigo — não apenas persistida no banco
-- [ ] 12.6 Confirmar que toda tela (lista, votação, resultado) tem navegação de volta clara e funcional, sem tela sem saída
-- [ ] 12.7 Confirmar visualmente que a interface funciona corretamente em tema claro E escuro em todas as telas
-- [ ] 12.8 Confirmar que a marca "Vote ai" está aplicada com a diferenciação visual correta (cor primária em "ai") em todas as telas
+- [x] 12.1 Confirmar que o voto anônimo com nota de 1 a 5 está visível e utilizável na interface (não só no endpoint/banco) — usuário consegue votar do início ao fim pela UI
+- [x] 12.2 Confirmar que o comentário opcional aparece como campo real no formulário de voto na UI, não apenas aceito silenciosamente pela API
+- [x] 12.3 Confirmar que as estatísticas em tempo real (média, total de votos) estão visíveis na tela de resultado e se atualizam sozinhas, sem reload manual
+- [x] 12.4 Confirmar que a tela de resultado ao vivo existe como tela dedicada e acessível pela navegação da aplicação
+- [x] 12.5 Confirmar que a lista de comentários (nota, comentário, horário) está visível na tela de resultado, ordenada do mais recente pro mais antigo — não apenas persistida no banco
+- [x] 12.6 Confirmar que toda tela (lista, votação, resultado) tem navegação de volta clara e funcional, sem tela sem saída
+- [x] 12.7 Confirmar visualmente que a interface funciona corretamente em tema claro E escuro em todas as telas
+- [x] 12.8 Confirmar que a marca "Vote ai" está aplicada com a diferenciação visual correta (cor primária em "ai") em todas as telas

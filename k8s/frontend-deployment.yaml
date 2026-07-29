@@ -19,7 +19,7 @@ spec:
         - name: ghcr-pull-secret
       containers:
         - name: frontend
-          image: ghcr.io/apsferreira/voteai-frontend:fbb7ed0
+          image: ghcr.io/apsferreira/voteai-frontend:07bd4da
           ports:
             - containerPort: 80
           readinessProbe:

@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
-import { ChevronRight, Mic2 } from 'lucide-react'
+import { BarChart3, ChevronRight, Mic2 } from 'lucide-react'
 import { PageShell } from '@/components/layout/page-shell'
 import { Logo } from '@/components/layout/logo'
 import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useTalks } from '@/hooks/use-talks'
 
@@ -47,12 +48,11 @@ export function TalksListPage() {
         ) : null}
 
         {talks?.map((talk, index) => (
-          <Link key={talk.slug} to={`/talks/${talk.slug}/vote`} className="block">
-            <Card
-              className={`gap-3 p-5 transition-colors hover:border-primary/40 sm:p-6 ${
-                CARD_TINTS[index % CARD_TINTS.length]
-              }`}
-            >
+          <Card
+            key={talk.slug}
+            className={`gap-3 p-5 sm:p-6 ${CARD_TINTS[index % CARD_TINTS.length]}`}
+          >
+            <Link to={`/talks/${talk.slug}/vote`} className="block">
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
                   <h2 className="text-lg font-semibold text-foreground">{talk.title}</h2>
@@ -69,8 +69,15 @@ export function TalksListPage() {
                   aria-hidden="true"
                 />
               </div>
-            </Card>
-          </Link>
+            </Link>
+
+            <Button asChild variant="outline" size="sm" className="mt-1 w-full sm:w-auto">
+              <Link to={`/talks/${talk.slug}/results`}>
+                <BarChart3 className="size-3.5" aria-hidden="true" />
+                Ver resultado ao vivo
+              </Link>
+            </Button>
+          </Card>
         ))}
       </div>
     </PageShell>

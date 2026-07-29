@@ -2,7 +2,7 @@
 
 - [x] 1.1 Criar branch `feat/votacao-ao-vivo`
 - [x] 1.2 Criar estrutura de diretórios `backend/` (Go/Fiber) e `frontend/` (React/Vite)
-- [ ] 1.3 Criar `docker-compose.yml` na raiz com serviços `backend` e `frontend`, hot reload via volume mounts
+- [x] 1.3 Criar `docker-compose.yml` na raiz com serviços `backend` e `frontend`, hot reload via volume mounts
 - [x] 1.4 Criar `migrations/001_init.sql` com o schema `talks` e `votes` (exatamente como definido no CLAUDE.md)
 
 ## 2. Backend — base e persistência
@@ -54,9 +54,9 @@
 
 ## 9. Containerização
 
-- [ ] 9.1 Criar Dockerfile multi-stage para o backend (build de produção)
-- [ ] 9.2 Criar Dockerfile multi-stage para o frontend (build de produção)
-- [ ] 9.3 Validar build local via `docker compose up` e smoke test manual dos fluxos principais
+- [x] 9.1 Criar Dockerfile multi-stage para o backend (build de produção)
+- [x] 9.2 Criar Dockerfile multi-stage para o frontend (build de produção)
+- [x] 9.3 Validar build local via `docker compose up` e smoke test manual dos fluxos principais
 
 ## 10. Validação com requisições reais
 

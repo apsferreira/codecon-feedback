@@ -67,11 +67,11 @@
 
 ## 11. Deploy
 
-- [ ] 11.1 Buildar imagens com `docker buildx build --platform linux/amd64` para `ghcr.io/apsferreira/voteai-backend` e `ghcr.io/apsferreira/voteai-frontend` (tag `:test`)
-- [ ] 11.2 Confirmar plataforma amd64 via `docker manifest inspect` antes de considerar o build concluído
-- [ ] 11.3 Ajustar pontualmente `k8s/` apenas se algo específico exigir (sem reescrever os manifests existentes)
-- [ ] 11.4 Parar após validação automatizada (seção 10) e aguardar confirmação manual explícita do Antonio antes de marcar o PR como pronto pra review
-- [ ] 11.5 Após confirmação manual, marcar PR como "ready for review" (`gh pr ready`) — deploy real só ocorre via merge na `main` (pipeline automático), nunca manualmente
+- [ ] 11.1 Buildar imagens com `docker buildx build --platform linux/amd64` para `ghcr.io/apsferreira/voteai-backend` e `ghcr.io/apsferreira/voteai-frontend` (tag `:test`) — pulado por decisão do Antonio; deploy real ocorrerá via merge/pipeline automático (11.5)
+- [ ] 11.2 Confirmar plataforma amd64 via `docker manifest inspect` antes de considerar o build concluído — n/a, ver 11.1
+- [x] 11.3 Ajustar pontualmente `k8s/` apenas se algo específico exigir (sem reescrever os manifests existentes) — confirmado que os manifests existentes já batem com o backend implementado (env PORT/DATABASE_URL, porta 3000, /health), nenhum ajuste necessário
+- [x] 11.4 Parar após validação automatizada (seção 10) e aguardar confirmação manual explícita do Antonio antes de marcar o PR como pronto pra review
+- [x] 11.5 Após confirmação manual, marcar PR como "ready for review" (`gh pr ready`) — deploy real só ocorre via merge na `main` (pipeline automático), nunca manualmente
 
 ## 12. Validação de completude (funcionalidades visíveis e utilizáveis na UI)
 

@@ -1,5 +1,8 @@
-const API_URL: string =
-  (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://localhost:3000'
+// Sem VITE_API_URL definida (build de produção), usa caminho relativo — o
+// Traefik roteia /api pro backend no mesmo host (voteai.antoniopedro.com.br).
+// Em dev local, o docker-compose.yml define VITE_API_URL=http://localhost:3000
+// porque o Vite dev server (5173) e o backend (3000) não estão na mesma origem.
+const API_URL: string = (import.meta.env.VITE_API_URL as string | undefined) ?? ''
 
 export class ApiError extends Error {
   status: number

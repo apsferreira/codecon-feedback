@@ -1,28 +1,28 @@
 ## 1. Setup do projeto
 
-- [ ] 1.1 Criar branch `feat/votacao-ao-vivo`
-- [ ] 1.2 Criar estrutura de diretórios `backend/` (Go/Fiber) e `frontend/` (React/Vite)
+- [x] 1.1 Criar branch `feat/votacao-ao-vivo`
+- [x] 1.2 Criar estrutura de diretórios `backend/` (Go/Fiber) e `frontend/` (React/Vite)
 - [ ] 1.3 Criar `docker-compose.yml` na raiz com serviços `backend` e `frontend`, hot reload via volume mounts
-- [ ] 1.4 Criar `migrations/001_init.sql` com o schema `talks` e `votes` (exatamente como definido no CLAUDE.md)
+- [x] 1.4 Criar `migrations/001_init.sql` com o schema `talks` e `votes` (exatamente como definido no CLAUDE.md)
 
 ## 2. Backend — base e persistência
 
-- [ ] 2.1 Inicializar módulo Go 1.24 com Fiber v2 e driver pgx, escutando na porta 3000
-- [ ] 2.2 Configurar conexão com PostgreSQL (`voteai`) via variáveis de ambiente, sem hardcode de credenciais
-- [ ] 2.3 Aplicar migration `001_init.sql` e seed das duas talks confirmadas (sdd-sopa, escalando-nodejs) via `ON CONFLICT DO NOTHING`
-- [ ] 2.4 Implementar camada de acesso a dados (queries) para talks e votes
+- [x] 2.1 Inicializar módulo Go 1.24 com Fiber v2 e driver pgx, escutando na porta 3000
+- [x] 2.2 Configurar conexão com PostgreSQL (`voteai`) via variáveis de ambiente, sem hardcode de credenciais
+- [x] 2.3 Aplicar migration `001_init.sql` e seed das duas talks confirmadas (sdd-sopa, escalando-nodejs) via `ON CONFLICT DO NOTHING`
+- [x] 2.4 Implementar camada de acesso a dados (queries) para talks e votes
 
 ## 3. Backend — endpoints de votação
 
-- [ ] 3.1 Implementar `GET /api/talks` — lista talks com título e palestrante
-- [ ] 3.2 Implementar `POST /api/talks/:slug/votes` — valida rating 1-5, persiste voto anônimo com comentário opcional
-- [ ] 3.3 Adicionar validação de payload (rating obrigatório e no intervalo, comentário opcional) com erros claros
+- [x] 3.1 Implementar `GET /api/talks` — lista talks com título e palestrante
+- [x] 3.2 Implementar `POST /api/talks/:slug/votes` — valida rating 1-5, persiste voto anônimo com comentário opcional
+- [x] 3.3 Adicionar validação de payload (rating obrigatório e no intervalo, comentário opcional) com erros claros
 
 ## 4. Backend — endpoints de resultado ao vivo
 
-- [ ] 4.1 Implementar `GET /api/talks/:slug/stats` — média de nota e total de votos por talk
-- [ ] 4.2 Implementar `GET /api/talks/:slug/comments` — feed de comentários (rating, comment, created_at), mais recente primeiro, só votos com comentário
-- [ ] 4.3 Adicionar índice em `votes(talk_slug, created_at)` para suportar polling frequente sem degradar performance
+- [x] 4.1 Implementar `GET /api/talks/:slug/stats` — média de nota e total de votos por talk
+- [x] 4.2 Implementar `GET /api/talks/:slug/comments` — feed de comentários (rating, comment, created_at), mais recente primeiro, só votos com comentário
+- [x] 4.3 Adicionar índice em `votes(talk_slug, created_at)` para suportar polling frequente sem degradar performance
 
 ## 5. Frontend — setup e identidade visual
 

@@ -1,10 +1,14 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* Tema segue prefers-color-scheme do sistema (sem toggle manual).
-   As variáveis semânticas (bg-background, text-foreground etc) trocam de
-   valor sozinhas dentro do media query abaixo — não é necessário usar o
-   variant `dark:` do Tailwind em lugar nenhum da aplicação. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tema padrão segue prefers-color-scheme do sistema, mas pode ser
+   sobrescrito manualmente via classe .dark na <html> (toggle em
+   use-theme.ts, persistido em localStorage). As variáveis semânticas
+   (bg-background, text-foreground etc) trocam de valor sozinhas — não é
+   necessário usar o variant `dark:` do Tailwind em lugar nenhum da
+   aplicação além deste arquivo. */
 
 :root {
   --radius: 0.625rem;
@@ -38,35 +42,33 @@
   --success-foreground: oklch(0.98 0.02 145);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: oklch(0.16 0.02 285);
-    --foreground: oklch(0.95 0.01 285);
-    --card: oklch(0.2 0.02 285);
-    --card-foreground: oklch(0.95 0.01 285);
-    --popover: oklch(0.2 0.02 285);
-    --popover-foreground: oklch(0.95 0.01 285);
+.dark {
+  --background: oklch(0.16 0.02 285);
+  --foreground: oklch(0.95 0.01 285);
+  --card: oklch(0.2 0.02 285);
+  --card-foreground: oklch(0.95 0.01 285);
+  --popover: oklch(0.2 0.02 285);
+  --popover-foreground: oklch(0.95 0.01 285);
 
-    --primary: oklch(0.72 0.19 293);
-    --primary-foreground: oklch(0.16 0.02 285);
+  --primary: oklch(0.72 0.19 293);
+  --primary-foreground: oklch(0.16 0.02 285);
 
-    --secondary: oklch(0.27 0.02 285);
-    --secondary-foreground: oklch(0.95 0.01 285);
-    --muted: oklch(0.27 0.02 285);
-    --muted-foreground: oklch(0.68 0.02 285);
-    --accent: oklch(0.3 0.07 293);
-    --accent-foreground: oklch(0.92 0.03 293);
+  --secondary: oklch(0.27 0.02 285);
+  --secondary-foreground: oklch(0.95 0.01 285);
+  --muted: oklch(0.27 0.02 285);
+  --muted-foreground: oklch(0.68 0.02 285);
+  --accent: oklch(0.3 0.07 293);
+  --accent-foreground: oklch(0.92 0.03 293);
 
-    --destructive: oklch(0.65 0.22 27);
-    --destructive-foreground: oklch(0.16 0.02 285);
+  --destructive: oklch(0.65 0.22 27);
+  --destructive-foreground: oklch(0.16 0.02 285);
 
-    --border: oklch(0.32 0.02 285 / 60%);
-    --input: oklch(0.32 0.02 285 / 60%);
-    --ring: oklch(0.72 0.19 293);
+  --border: oklch(0.32 0.02 285 / 60%);
+  --input: oklch(0.32 0.02 285 / 60%);
+  --ring: oklch(0.72 0.19 293);
 
-    --success: oklch(0.68 0.16 145);
-    --success-foreground: oklch(0.16 0.02 285);
-  }
+  --success: oklch(0.68 0.16 145);
+  --success-foreground: oklch(0.16 0.02 285);
 }
 
 @theme inline {

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { BarChart3, ChevronRight, Mic2 } from 'lucide-react'
 import { PageShell } from '@/components/layout/page-shell'
 import { Logo } from '@/components/layout/logo'
+import { ThemeToggle } from '@/components/layout/theme-toggle'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -18,7 +19,10 @@ export function TalksListPage() {
   return (
     <PageShell>
       <header>
-        <Logo />
+        <div className="flex items-center justify-between">
+          <Logo />
+          <ThemeToggle />
+        </div>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
           Talks do evento
         </h1>

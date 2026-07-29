@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { BackLink } from '@/components/layout/back-link'
 import { Logo } from '@/components/layout/logo'
+import { ThemeToggle } from '@/components/layout/theme-toggle'
 
 interface PageHeaderProps {
   backTo?: string
@@ -14,6 +15,7 @@ export function PageHeader({ backTo, backLabel, title, subtitle }: PageHeaderPro
     <header>
       <div className="flex items-center justify-between">
         <Logo />
+        <ThemeToggle />
       </div>
 
       {backTo ? (

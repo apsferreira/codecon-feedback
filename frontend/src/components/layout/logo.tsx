@@ -1,0 +1,14 @@
+import { cn } from '@/lib/utils'
+
+interface LogoProps {
+  className?: string
+}
+
+export function Logo({ className }: LogoProps) {
+  return (
+    <span className={cn('text-2xl font-bold tracking-tight', className)}>
+      <span className="text-foreground">Vote</span>
+      <span className="text-primary">ai</span>
+    </span>
+  )
+}

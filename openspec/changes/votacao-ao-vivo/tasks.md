@@ -26,30 +26,30 @@
 
 ## 5. Frontend — setup e identidade visual
 
-- [ ] 5.1 Inicializar projeto React 19 + TypeScript strict + Vite + TailwindCSS + shadcn/ui
-- [ ] 5.2 Configurar tema com marca "Vote ai" ("Vote" cor padrão, "ai" cor primária roxo/violeta, mesmo peso de fonte)
-- [ ] 5.3 Configurar client HTTP para consumir a API do backend
+- [x] 5.1 Inicializar projeto React 19 + TypeScript strict + Vite + TailwindCSS + shadcn/ui
+- [x] 5.2 Configurar tema com marca "Vote ai" ("Vote" cor padrão, "ai" cor primária roxo/violeta, mesmo peso de fonte)
+- [x] 5.3 Configurar client HTTP para consumir a API do backend
 
 ## 6. Frontend — tela de lista de talks
 
-- [ ] 6.1 Implementar tela inicial listando talks (título, palestrante) com cards diferenciados visualmente entre si
-- [ ] 6.2 Aplicar espaçamento mínimo definido no CLAUDE.md (gaps, padding de card, padding lateral mobile)
+- [x] 6.1 Implementar tela inicial listando talks (título, palestrante) com cards diferenciados visualmente entre si
+- [x] 6.2 Aplicar espaçamento mínimo definido no CLAUDE.md (gaps, padding de card, padding lateral mobile)
 - [ ] 6.3 Validar tema claro e escuro na tela
 
 ## 7. Frontend — tela de votação
 
-- [ ] 7.1 Implementar formulário de voto: seleção de nota 1-5 (obrigatória) e campo de comentário opcional
-- [ ] 7.2 Implementar submissão do voto contra `POST /api/talks/:slug/votes`, com feedback de sucesso/erro
-- [ ] 7.3 Adicionar navegação de volta para a lista de talks
+- [x] 7.1 Implementar formulário de voto: seleção de nota 1-5 (obrigatória) e campo de comentário opcional
+- [x] 7.2 Implementar submissão do voto contra `POST /api/talks/:slug/votes`, com feedback de sucesso/erro
+- [x] 7.3 Adicionar navegação de volta para a lista de talks
 - [ ] 7.4 Validar tema claro e escuro na tela
 
 ## 8. Frontend — tela de resultado ao vivo
 
-- [ ] 8.1 Implementar exibição de estatísticas agregadas (média, total de votos) por talk
-- [ ] 8.2 Implementar feed de comentários visível (nota, comentário, horário), ordenado do mais recente pro mais antigo
-- [ ] 8.3 Implementar polling (3-5s) contra `stats` e `comments` para atualização em tempo real sem reload manual
-- [ ] 8.4 Tratar estado de talk sem votos (sem erro, com indicação clara de "sem votos ainda")
-- [ ] 8.5 Adicionar navegação de volta para a lista de talks
+- [x] 8.1 Implementar exibição de estatísticas agregadas (média, total de votos) por talk
+- [x] 8.2 Implementar feed de comentários visível (nota, comentário, horário), ordenado do mais recente pro mais antigo
+- [x] 8.3 Implementar polling (3-5s) contra `stats` e `comments` para atualização em tempo real sem reload manual
+- [x] 8.4 Tratar estado de talk sem votos (sem erro, com indicação clara de "sem votos ainda")
+- [x] 8.5 Adicionar navegação de volta para a lista de talks
 - [ ] 8.6 Validar tema claro e escuro na tela
 
 ## 9. Containerização

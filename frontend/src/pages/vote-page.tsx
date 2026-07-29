@@ -72,7 +72,7 @@ export function VotePage() {
                 Sua avaliação foi registrada anonimamente.
               </p>
             </div>
-            <div className="mt-2 flex w-full flex-col gap-3 sm:flex-row">
+            <div className="mt-2 flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild variant="outline" className="w-full sm:w-auto">
                 <Link to="/">Voltar para talks</Link>
               </Button>

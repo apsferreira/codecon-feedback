@@ -27,7 +27,7 @@ func (r *TalkRepository) List(ctx context.Context) ([]models.Talk, error) {
 	rows, err := r.pool.Query(ctx, `
 		SELECT slug, title, speaker, description
 		FROM talks
-		ORDER BY slug
+		ORDER BY display_order, slug
 	`)
 	if err != nil {
 		return nil, fmt.Errorf("falha ao listar talks: %w", err)

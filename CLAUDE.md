@@ -89,6 +89,13 @@ CREATE TABLE IF NOT EXISTS votes (
 - Migration SQL correspondente em migrations/001_init.sql
 
 ## Deploy K3s (regras de infra reais, nao inventar alternativas)
+- O cluster K3s roda em amd64 — SEMPRE buildar as imagens com
+  `--platform linux/amd64` explicitamente (docker buildx build
+  --platform linux/amd64 ... --push). NUNCA usar docker build simples
+  numa maquina Apple Silicon sem especificar a plataforma, porque o
+  default vira arm64 e os pods nao rodam no cluster (erro de
+  arquitetura). Confirmar com `docker manifest inspect` que a
+  plataforma amd64 aparece antes de considerar o build concluido
 - Os manifests em k8s/ (namespace.yaml, backend-deployment.yaml,
   frontend-deployment.yaml, ingressroute.yaml) JA EXISTEM neste repo,
   prontos e ja validados contra o cluster real. NAO regenerar nem
